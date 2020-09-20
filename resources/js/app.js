@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('post-list-component', require('./components/Posts/ListComponent').default);
 Vue.component('post-create-component', require('./components/Posts/CreateComponent').default);
+Vue.component('post-edit-component', require('./components/Posts/EditComponent').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
