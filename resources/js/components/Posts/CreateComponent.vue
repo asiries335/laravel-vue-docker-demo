@@ -13,24 +13,26 @@
 <script>
 export default {
     name: "CreateComponent",
-
     data() {
         return {
             title: null,
             message: null,
         }
     },
-
+    props: [
+        'user_id',
+    ],
     methods: {
         create() {
             axios.post('/api/post', {
                 'title': this.title,
                 'message': this.message,
+                'user_id': this.user_id
             }).then((response) => {
                 this.title = null;
                 this.message = null;
             });
-        }
+        },
     }
 }
 </script>

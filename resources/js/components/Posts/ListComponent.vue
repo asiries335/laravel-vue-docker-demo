@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         getPosts() {
-            axios.get('api/post/list').then((response) => {
+            axios.get('/api/post/list/' + this.user_id).then((response) => {
                 this.posts = response.data;
             });
         }

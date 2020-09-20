@@ -13,31 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/post/list', function (Request $request) {
-    return response()->json(
-        [
-            [
-                'id' => 234,
-                'title' => 'title the post1',
-                'message' => 'message for post1',
-            ],
-            [
-                'id' => 2341,
-                'title' => 'title the post2',
-                'message' => 'message for post2',
-            ]
-        ]
-    );
-});
+Route::get('/post/list/{user_id}', 'Api\PostController@getAll')->name('get-all-posts');
 
-Route::post('/post', function (Request $request) {
-    return response()->json(
-        [
-            [
-                'id' => 2342,
-                'title' => $request->title,
-                'message' => $request->message,
-            ]
-        ]
-    );
-});
+Route::post('/post', 'Api\PostController@create')->name('create-post');
+
+Route::put('/post', 'Api\PostController@edit')->name('edit-post');
+
