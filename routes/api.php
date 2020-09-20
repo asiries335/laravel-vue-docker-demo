@@ -14,8 +14,6 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/post/list/{user_id}', 'Api\PostController@getAll')->name('get-all-posts');
-
 Route::post('/post', 'Api\PostController@create')->name('create-post');
-
 Route::put('/post', 'Api\PostController@edit')->name('edit-post');
-
+Route::delete('/post', 'Api\PostController@delete')->name('delete-post');

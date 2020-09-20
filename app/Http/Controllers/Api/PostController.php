@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\DeletePostRequest;
 use App\Http\Requests\EditPostRequest;
 use App\Services\PostService;
 use App\Transporters\CreatePostTransporter;
+use App\Transporters\DeletePostTransporter;
 use App\Transporters\GetAllPostTransporter;
 use App\Transporters\EditPostTransporter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -105,6 +106,31 @@ class PostController extends Controller
         $post = $this->service->edit($transporter);
 
         return $post->toJson();
+    }
+
+    /**
+     * Delete Post
+     *
+     * @param DeletePostRequest $deletePostRequest
+     *
+     * @return string
+     *
+     * @throws \Dto\Exceptions\InvalidDataTypeException
+     *
+     * @return string
+     */
+    public function delete(DeletePostRequest $deletePostRequest) : bool
+    {
+        $transporter = new DeletePostTransporter(
+            [
+                'user_id'   => $deletePostRequest->user_id,
+                'post_id'   => $deletePostRequest->post_id,
+            ]
+        );
+
+        $this->service->delete($transporter);
+
+        return true;
     }
 
 }

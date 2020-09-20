@@ -6,6 +6,7 @@ namespace App\Services;
 
 use App\Post;
 use App\Transporters\CreatePostTransporter;
+use App\Transporters\DeletePostTransporter;
 use App\Transporters\EditPostTransporter;
 use App\Transporters\GetAllPostTransporter;
 use Illuminate\Support\Collection;
@@ -65,4 +66,28 @@ class PostService
 
         return $post;
     }
+
+    /**
+     * Delete Post
+     *
+     * @param DeletePostTransporter $deletePostTransporter
+     *
+     * @return bool
+     *
+     * @throws \Dto\Exceptions\InvalidDataTypeException
+     */
+    public function delete(DeletePostTransporter $deletePostTransporter) : bool
+    {
+        $post = Post::findOrFail($deletePostTransporter->get('post_id')->toScalar());
+
+        if ($post->user_id !== $deletePostTransporter->get('user_id')->toScalar()) {
+            throw new \Exception('not user');
+        }
+
+        $post->delete();
+
+        return true;
+    }
+
+
 }

@@ -8,6 +8,7 @@
                         <h4>{{ post.title }} </h4>
                         <p>{{ post.message }} </p>
                         <div class="btn-group">
+                            <delete-component :post_id="post.id" :user_id="user_id"></delete-component>
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Edit
                             </button>
@@ -31,10 +32,12 @@
 
 <script>
 import EditComponent from "./EditComponent";
+import DeleteComponent from "./DeleteComponent";
 
 export default {
     name: "ListComponent",
     components: {
+        DeleteComponent,
         EditComponent
     },
     props: [
