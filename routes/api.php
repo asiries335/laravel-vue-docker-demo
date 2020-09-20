@@ -16,3 +16,31 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::get('/post/list', function (Request $request) {
+    return response()->json(
+        [
+            [
+            'title' => 'title the post1',
+            'message' => 'message for post1',
+            ],
+            [
+            'title' => 'title the post2',
+            'message' => 'message for post2',
+            ]
+        ]
+    );
+});
+
+Route::post('/post', function (Request $request) {
+    return response()->json(
+        [
+            [
+                'title' => $request->title,
+                'message' => $request->message,
+            ]
+        ]
+    );
+});
