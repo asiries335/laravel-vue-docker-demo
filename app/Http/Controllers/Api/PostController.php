@@ -119,7 +119,7 @@ class PostController extends Controller
      *
      * @return string
      */
-    public function delete(DeletePostRequest $deletePostRequest) : bool
+    public function delete(DeletePostRequest $deletePostRequest)
     {
         $transporter = new DeletePostTransporter(
             [
@@ -130,7 +130,7 @@ class PostController extends Controller
 
         $this->service->delete($transporter);
 
-        return true;
+        return response()->json(true);
     }
 
 }

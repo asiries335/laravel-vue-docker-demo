@@ -11,6 +11,9 @@
 </template>
 
 <script>
+import ListComponent from "./ListComponent";
+import storeUserPosts from '../../storeUserPosts';
+
 export default {
     name: "CreateComponent",
     data() {
@@ -19,8 +22,12 @@ export default {
             message: null,
         }
     },
+    components: {
+        ListComponent
+    },
     props: [
         'user_id',
+
     ],
     methods: {
         create() {
@@ -31,6 +38,7 @@ export default {
             }).then((response) => {
                 this.title = null;
                 this.message = null;
+                storeUserPosts.data.posts.push(response.data)
             });
         },
     }
