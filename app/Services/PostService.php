@@ -56,7 +56,7 @@ class PostService
         $post = Post::findOrFail($editPostTransporter->get('post_id')->toScalar());
 
         if ($post->user_id !== $editPostTransporter->get('user_id')->toScalar()) {
-            throw new \Exception('not user');
+            throw new \Exception('message error');
         }
 
         $post->title    = $editPostTransporter->get('title')->toScalar();
@@ -81,7 +81,7 @@ class PostService
         $post = Post::findOrFail($deletePostTransporter->get('post_id')->toScalar());
 
         if ($post->user_id !== $deletePostTransporter->get('user_id')->toScalar()) {
-            throw new \Exception('not user');
+            throw new \Exception('message error');
         }
 
         $post->delete();

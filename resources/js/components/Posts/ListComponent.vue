@@ -2,6 +2,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <button @click="getPosts" class="btn btn-info mb-4 mt-4">Update list posts</button>
+            <button @click="sortPosts" class="btn btn-info mb-4 mt-4 ml-4">Reverse list posts</button>
             <div class="col-md-12">
                 <div class="list-group posts" v-for="(post, index) in storeUserPosts.data.posts">
                     <div class="list-group-item mb-4">
@@ -57,6 +58,9 @@ export default {
             axios.get('/api/post/list/' + this.user_id).then((response) => {
                 storeUserPosts.data.posts = response.data;
             });
+        },
+        sortPosts() {
+            storeUserPosts.data.posts.reverse()
         }
     }
 }
